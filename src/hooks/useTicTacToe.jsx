@@ -5,6 +5,7 @@ const initialBoard = () => Array(9).fill(null);
 const useTicTacToe = () => {
     const [board, setBoard] = useState(initialBoard);
     const [isXNext, setIsXNext] = useState(true)
+    // const [winner, setWinner] = useState(null)
 
     const WINNIN_PATTERNS = [
         [0, 1, 2],
@@ -31,8 +32,9 @@ const useTicTacToe = () => {
         return null;
     };   
     const handleClick = (index) => {
-        //1° check winner // check if winner or cell is !== null 
-        const winner = calculateWinner(board);      
+        //1° check winner // check if winner or cell is !== null
+        const winner = calculateWinner(board);  
+        // setWinner(winner);    
         if(winner || board[index]) return
         
         //2° update board
@@ -43,8 +45,17 @@ const useTicTacToe = () => {
         //3° change turn
         setIsXNext(!isXNext);   
     };   
-    const getStatusMessage = () => {};   
-    const resetGame = () => {};   
+    const getStatusMessage = () => {
+        const winner = calculateWinner(board);  
+
+        if(winner) return `Player ${winner} wins!`;
+        if(!board.includes(null)) return `It's a draw!`;
+        return `Player ${isXNext ? 'X' : 'O'} turn`;
+    };   
+    const resetGame = () => {
+        setBoard(initialBoard);
+        setIsXNext(true);
+    };   
 
     return {
         board,
