@@ -8,7 +8,8 @@ body{
   margin: 0 auto;
   text-align: center;
   padding: 30px;
-  background-color: rgb(105, 67, 73)
+  /* background-color: rgb(134, 111, 162) */
+  background-image: linear-gradient(to top, #cc208e 0%, #6713d2 100%);
 }
 
 .status{
@@ -30,7 +31,7 @@ body{
   transition: background-color 0.3s ease-in-out;
 }
 .reset-button:hover{
-  background-color: #ad7373;
+  background-color: #cc208e;
 }
 
 .board{
@@ -49,8 +50,14 @@ body{
   border: 2px solid #cccccc;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-  ;
+  background-color: #d48bf33c;;
 }
 .cell:hover{
-  background-color: #ad7373;
+  background-color: #bf47f3;
 }
+.cell.calypso{
+  color: rgb(128, 217, 225);
+}
+.cell.pink{
+  color: rgb(249, 177, 213)
+} 

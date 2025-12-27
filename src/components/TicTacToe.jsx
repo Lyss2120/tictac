@@ -19,7 +19,7 @@ function TicTacToe() {
 
       <div className="board">
         {board.map((cell, i) => {
-          return <button className="cell"
+          return <button className={`cell ${cell === 'X' ? 'calypso' : 'pink'}`}
             key={i}
             onClick={() => handleClick(i)}
             disabled={cell !== null}
