@@ -45,7 +45,6 @@ const useTicTacToe = () => {
             //3° change turn
             setIsXNext(!isXNext);
         }
-        else if (winner || board[index]){console.log('not allowed'); return};
     };
     const getStatusMessage = (winner) => {
         if (winner) return `Player ${winner} wins!`;
