@@ -5,7 +5,7 @@ const initialBoard = () => Array(9).fill(null);
 const useTicTacToe = () => {
     const [board, setBoard] = useState(initialBoard);
     const [isXNext, setIsXNext] = useState(true)
-    // const [winner, setWinner] = useState(null)
+    const [winner, setWinner] = useState([])
 
     const WINNIN_PATTERNS = [
         [0, 1, 2],
@@ -15,7 +15,7 @@ const useTicTacToe = () => {
         [1, 4, 7],
         [2, 5, 8],
         [0, 4, 8],
-        [2, 4, 6],  
+        [2, 4, 6],
     ];
 
     const calculateWinner = (currentBoard) => {
@@ -30,32 +30,32 @@ const useTicTacToe = () => {
             }
         }
         return null;
-    };   
+    };
     const handleClick = (index) => {
-        //1° check winner // check if winner or cell is !== null
-        const winner = calculateWinner(board);  
-        // setWinner(winner);    
-        if(winner || board[index]) return
-        
-        //2° update board
-        const newBoard = [...board];
-        newBoard[index] = isXNext ? 'X' : 'O';
-        setBoard(newBoard);
-        
-        //3° change turn
-        setIsXNext(!isXNext);   
-    };   
-    const getStatusMessage = () => {
-        const winner = calculateWinner(board);  
+        //1° check winner 
+        const theWinner = calculateWinner(board);
+        setWinner(theWinner);
 
-        if(winner) return `Player ${winner} wins!`;
-        if(!board.includes(null)) return `It's a draw!`;
+        //if winner or cell is null do this
+        if (!winner || !board[index]) {
+            //2° update board
+            const newBoard = [...board];
+            newBoard[index] = isXNext ? 'X' : 'O';
+            setBoard(newBoard);
+            //3° change turn
+            setIsXNext(!isXNext);
+        }
+        else if (winner || board[index]){console.log('not allowed'); return};
+    };
+    const getStatusMessage = (winner) => {
+        if (winner) return `Player ${winner} wins!`;
+        if (!board.includes(null)) return `It's a draw!`;
         return `Player ${isXNext ? 'X' : 'O'} turn`;
-    };   
+    };
     const resetGame = () => {
         setBoard(initialBoard);
         setIsXNext(true);
-    };   
+    };
 
     return {
         board,
@@ -64,7 +64,7 @@ const useTicTacToe = () => {
         handleClick,
         getStatusMessage,
         resetGame
-    }       
     }
+}
 
 export default useTicTacToe

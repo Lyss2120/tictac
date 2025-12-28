@@ -4,7 +4,7 @@ import useTicTacToe from '../hooks/useTicTacToe';
 
 function TicTacToe() {
   const { board,
-    calculateWinner,
+    winner,
     handleClick,
     getStatusMessage,
     resetGame } = useTicTacToe()
@@ -13,7 +13,7 @@ function TicTacToe() {
   return (
     <div className="game">
       <div className="status">
-        <h1>{getStatusMessage()}</h1>
+        <h1>{getStatusMessage(winner)}</h1>
         <button className='reset-button' onClick={resetGame}>Reset Game</button>
       </div>
 
